@@ -1,4 +1,6 @@
 import React from 'react';
+import AuthIllustration from '../assets/auth-illustration.svg';
+import AuthIllustration2 from '../assets/auth2.svg';
 
 export default function Authenticate() {
     async function handleAuthenticate() {
@@ -24,8 +26,22 @@ export default function Authenticate() {
     }
 
     return (
-        <div>
-            <button onClick={handleAuthenticate}>Sign in with Google</button>
+        <div className="parent-container">
+            <div className='info-container'>
+                <img src={AuthIllustration} className='img1'/>
+                <img src={AuthIllustration2} className='img2'/>
+            </div>
+            <div className='login-container'>
+                <h1>Mail Storm</h1>
+                <p>Effortless Bulk Emails, Personalized for Everyone. In 3 simple steps.</p>
+                <ul>
+                    <ol>Enter a ulst of emails</ol>
+                    <ol>Enter your email body</ol>
+                    <ol>Hit Send!</ol>
+                </ul>
+                <p>Get Started Now!</p>
+                <button onClick={handleAuthenticate}>Sign in with Google</button>
+            </div>
         </div>
     );
 }

@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #B9DDFA;
+}
+
+.parent-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    overflow: hidden;
+}
+
+.info-container {
+    display: grid;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 2rem;
+}
+
+.img2 {
+    justify-self: right;
+}
+
+.login-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
