@@ -42,18 +42,16 @@ exports.googleRedirect = async (req, res) => {
     const oAuth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
     try {
-        // Exchange the code for tokens
         const { tokens } = await oAuth2Client.getToken(code);
-        oAuth2Client.setCredentials(tokens); // Store the tokens in the OAuth client
+        oAuth2Client.setCredentials(tokens);
 
-        // Get user information using the tokens
+        console.log(tokens);
+
         const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
         const userInfo = await oauth2.userinfo.get();
 
-        // Generate the redirect URL with tokens as query parameters
         const redirectUrl = `http://localhost:5173/home?access_token=${tokens.access_token}&refresh_token=${tokens.refresh_token}&user_info=${encodeURIComponent(JSON.stringify(userInfo.data))}`;
 
-        // Redirect the user to the home page with tokens and user info
         res.redirect(redirectUrl);
 
     } catch (err) {

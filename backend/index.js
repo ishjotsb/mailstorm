@@ -15,8 +15,10 @@ app.use(cors(corsOptions));
 
 
 const authenticationRouter = require('./routes/authenticationRouter');
+const sendEmailRouter = require('./routes/sendEmailRouter');
 
 app.use('/authenticate', authenticationRouter);
+app.use('/email', sendEmailRouter);
 
 app.listen(port, (req, res) => {
     console.log(`The server is running on port ${port}`);
