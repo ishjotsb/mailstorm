@@ -75,6 +75,10 @@ h1, h2 {
     padding: 1rem;
 }
 
+.email-add {
+    display: flex;
+}
+
 .form-container label {
     display: block;
     margin-bottom: .2rem;
