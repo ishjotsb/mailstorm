@@ -6,13 +6,14 @@ const port = 8888;
 const cors = require('cors');
 
 const corsOptions = {
-    origin: [process.env.BASE_URL, "https://accounts.google.com"],
+    origin: [process.env.BASE_URL, "https://accounts.google.com", "https://oauth2.googleapis.com"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
 };
   
 app.use(cors(corsOptions));
 
+app.use(express.json());
 
 const authenticationRouter = require('./routes/authenticationRouter');
 const sendEmailRouter = require('./routes/sendEmailRouter');

@@ -2,9 +2,11 @@ const { google } = require('googleapis');
 const nodemailer = require('nodemailer');
 
 exports.sendMail = async (req, res) => {
+
+    // console.log(req.user)
     const { emailList, subject, body } = req.body;
 
-    console.log(emailList);
+    // console.log(emailList);
 
     if (!emailList || !Array.isArray(emailList) || !subject || !body) {
         return res.status(400).json({ error: 'Invalid request. Ensure emailList, subject, and body are provided.' });
@@ -12,34 +14,36 @@ exports.sendMail = async (req, res) => {
 
     try {
         // Retrieve the tokens from the logged-in user's session or database
-        const { accessToken, refreshToken } = req.user.tokens; // Ensure you have middleware to set req.user
+        const { accessToken } = req.user.tokens; // Ensure you have middleware to set req.user
+
+        console.log(accessToken);
 
         const oAuth2Client = new google.auth.OAuth2(
             process.env.CLIENT_ID,
             process.env.CLIENT_SECRET,
-            process.env.REDIRECT_URI
+            'http://localhost:8888/authenticate/redirect'
         );
 
         oAuth2Client.setCredentials({
             access_token: accessToken,
-            refresh_token: refreshToken
         });
 
         // Verify the access token
-        await oAuth2Client.getAccessToken();
-
+        const x = await oAuth2Client.getAccessToken();
+        console.log(x);
         // Create the nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 type: 'OAuth2',
                 user: req.user.email, // Logged-in user's email
-                clientId: process.env.CLIENT_ID,
-                clientSecret: process.env.CLIENT_SECRET,
-                refreshToken,
-                accessToken
+                // clientId: process.env.CLIENT_ID,
+                // clientSecret: process.env.CLIENT_SECRET,
+                accessToken: x.token
             }
         });
+
+        console.log('here')
 
         // Send emails to each recipient
         const sendEmailPromises = emailList.map(email => {
