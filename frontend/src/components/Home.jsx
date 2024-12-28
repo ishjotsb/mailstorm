@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom"
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import AuthIllustration from '../assets/auth-illustration.svg';
 import AuthIllustration2 from '../assets/auth2.svg';
+import UserContext from "../context/user-context";
 
 export default function Home() {
 
@@ -10,8 +11,23 @@ export default function Home() {
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
 
+    const { setAccessToken } = useContext(UserContext);
     const [searchParams] = useSearchParams();
     const access_token = searchParams.get('access_token');
+
+    useEffect(() => {
+        if (access_token) {
+            localStorage.setItem("accessToken", access_token);
+            setAccessToken(access_token);
+        }
+
+        const storedToken = localStorage.getItem("accessToken");
+        if (!storedToken) {
+            window.location.href = "/authenticate";
+        } else {
+            setAccessToken(storedToken);
+        }
+    }, [access_token, setAccessToken]);
 
     function handleEmail (e) {
         setEmail(e.target.value)
@@ -32,6 +48,11 @@ export default function Home() {
 
     async function handleClickSend() {
 
+        if(emailList.length == 0 || subject == "" || body == "") {
+            alert("Please fill all the details");
+            return;
+        }
+
         const reqObj = {
             emailList,
             subject,
@@ -44,7 +65,7 @@ export default function Home() {
                 body: JSON.stringify(reqObj),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${access_token}`,
+                    'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             });
             if(!response || !response.ok) {
@@ -54,6 +75,7 @@ export default function Home() {
             const data = await response.json();
             setSubject("");
             setBody("");
+            setEmailList([]);
             alert("Email sent successfully!")
             console.log(data);
         }
