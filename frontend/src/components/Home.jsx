@@ -85,6 +85,12 @@ export default function Home() {
 
     }
 
+    function handleEmailRemove(e) {
+        console.log(e.target.id);
+        const newEmailList = emailList.filter((email, index) => index != e.target.id);
+        setEmailList(newEmailList);
+    }
+
   return (
     <div className="parent-container">
         <div className='info-container'>
@@ -97,11 +103,11 @@ export default function Home() {
                 <label>Email List:</label>
                 <div className="email-add">
                     <input type="email" required value={email} onChange={(e) => handleEmail(e)} />
-                    <button onClick={handleAdd}>+</button>
+                    <button onClick={handleAdd}>Add</button>
                 </div>
             </div>
-            <div>
-                {emailList.length != 0 && emailList.map((email, id) => <p key={id}>{email}</p>)}
+            <div className="email-list">
+                {emailList.length != 0 && emailList.map((email, index) => <p className="email-item" onClick={(e) => handleEmailRemove(e)} id={index} key={index}>{email} <span>x</span></p>)}
             </div>
             <div className="input-container">
                 <label>Subject:</label>
@@ -112,7 +118,7 @@ export default function Home() {
                 <input type="text" required value={body} onChange={(e) => handleBody(e)} />
             </div>
             <div className="input-container">
-                <button onClick={handleClickSend}>Send Email</button>
+                <button onClick={handleClickSend} className="button-send">Send Email</button>
             </div>
         </div>
     </div>

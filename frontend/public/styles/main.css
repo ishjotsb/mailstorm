@@ -65,7 +65,7 @@ h1, h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 90%;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -77,6 +77,27 @@ h1, h2 {
 
 .email-add {
     display: flex;
+    gap: 2rem;
+}
+
+.email-add input {
+    flex: 6
+}
+
+.email-add button {
+    flex: 1
+}
+
+.email-list {
+    display: flex;
+    gap: 2rem;
+}
+
+.email-item {
+    font-size: 1rem;
+    border: 2px solid #008cff;
+    padding: .5rem 1rem;
+    border-radius: 20px;
 }
 
 .form-container label {
@@ -89,10 +110,17 @@ h1, h2 {
     width: 100%;
 }
 
-.input-container button {
-    text-align: center;
-    width: 100%;
-    max-width: 50%;
+.input-container:last-child {
+    display: flex;
+}
+
+.button-send {
+    background-color: #4464AC;
+    color: white;
+    border: none;
+    min-width: 35%;
+    height: 2rem;
     margin: 0 auto;
-    height: 1.7rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
 }
