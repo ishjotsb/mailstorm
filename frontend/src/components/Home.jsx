@@ -3,6 +3,8 @@ import { useState, useContext, useEffect } from "react";
 import AuthIllustration from '../assets/auth-illustration.svg';
 import AuthIllustration2 from '../assets/auth2.svg';
 import UserContext from "../context/user-context";
+import "react-quill/dist/quill.snow.css";
+import ReactQuill from 'react-quill'
 
 export default function Home() {
 
@@ -115,7 +117,8 @@ export default function Home() {
             </div>
             <div className="input-container">
                 <label>Body:</label>
-                <input type="text" required value={body} onChange={(e) => handleBody(e)} />
+                {/* <input type="text" required value={body} onChange={(e) => handleBody(e)} /> */}
+                <ReactQuill theme="snow" value={body} onChange={setBody} className="custom-editor"/>
             </div>
             <div className="input-container">
                 <button onClick={handleClickSend} className="button-send">Send Email</button>

@@ -114,6 +114,15 @@ h1, h2 {
     display: flex;
 }
 
+.ql-toolbar {
+    border: none;
+}
+
+.custom-editor .ql-editor {
+    background-color: white;
+    height: 300px;
+}
+
 .button-send {
     background-color: #4464AC;
     color: white;
