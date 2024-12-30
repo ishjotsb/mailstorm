@@ -31,12 +31,12 @@ export default function Authenticate() {
                 <img src={AuthIllustration2} className='img2'/>
             </div>
             <div className='login-container'>
-                <h1>Mail Storm</h1>
+                <h1 className="site-heading">Mail Storm</h1>
                 <p>Effortless Bulk Emails, Personalized for Everyone. In 3 simple steps.</p>
                 <ul>
-                    <ol>1. Enter a list of emails</ol>
-                    <ol>2. Enter your email subject & body</ol>
-                    <ol>3. Hit Send!</ol>
+                    <ol><p>1. Enter a list of emails</p></ol>
+                    <ol><p>2. Enter your email subject & body</p></ol>
+                    <ol><p>3. Hit Send!</p></ol>
                 </ul>
                 <p>Get Started Now!</p>
                 <button onClick={handleAuthenticate} className='button-send button-send-2'>

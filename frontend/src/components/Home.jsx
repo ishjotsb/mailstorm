@@ -100,7 +100,7 @@ export default function Home() {
                 <img src={AuthIllustration2} className='img2'/>
         </div>
         <div className="form-container">
-            <h2>Mail Storm</h2>
+            <h2 className="site-heading">Mail Storm</h2>
             <div className="input-container">
                 <label>Email List:</label>
                 <div className="email-add">
