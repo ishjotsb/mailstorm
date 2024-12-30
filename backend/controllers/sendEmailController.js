@@ -51,7 +51,8 @@ exports.sendMail = async (req, res) => {
                 from: req.user.email, // Sender address (logged-in user)
                 to: email,
                 subject: subject,
-                text: body,
+                // text: body,
+                html: body
             });
         });
 

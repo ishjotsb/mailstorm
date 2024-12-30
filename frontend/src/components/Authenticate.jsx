@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import AuthIllustration from '../assets/auth-illustration.svg';
 import AuthIllustration2 from '../assets/auth2.svg';
+import googleLogo from '../../public/google.svg'
 
 export default function Authenticate() {
 
@@ -38,7 +39,10 @@ export default function Authenticate() {
                     <ol>3. Hit Send!</ol>
                 </ul>
                 <p>Get Started Now!</p>
-                <button onClick={handleAuthenticate}>Sign in with Google</button>
+                <button onClick={handleAuthenticate} className='button-send button-send-2'>
+                    <img src={googleLogo} />
+                        Sign in with Google
+                    </button>
             </div>
         </div>
     );

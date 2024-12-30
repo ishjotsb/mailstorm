@@ -21,6 +21,10 @@ h1, h2 {
     font-family: 'Jersey 10', serif;
 }
 
+h1 {
+    font-size: 4rem;
+}
+
 .parent-container {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -50,9 +54,11 @@ h1, h2 {
 }
 
 .login-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    width: 75%;
+    justify-self: center;
 }
 
 .form-container h2 {
@@ -128,8 +134,34 @@ h1, h2 {
     color: white;
     border: none;
     min-width: 35%;
-    height: 2rem;
+    height: 3rem;
     margin: 0 auto;
     font-size: 1.1rem;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.button-send-2 {
+    margin-top: 2rem;
+    border: 2px solid #4464AC;
+    background-color: transparent;
+    color: #4464AC;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1500px) {
+    .img1, .img2 {
+        max-width: 55%;
+    }
+
+    .custom-editor .ql-editor {
+        height: 200px;
+    }
 }
