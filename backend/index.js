@@ -6,7 +6,7 @@ const port = 8888;
 const cors = require('cors');
 
 const corsOptions = {
-    origin: [process.env.BASE_URL, "https://accounts.google.com", "https://oauth2.googleapis.com"],
+    origin: [process.env.BASE_URL, process.env.API_URL, "https://accounts.google.com", "https://oauth2.googleapis.com"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
 };
