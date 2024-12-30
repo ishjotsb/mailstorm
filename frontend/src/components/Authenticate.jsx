@@ -7,7 +7,7 @@ export default function Authenticate() {
 
     async function handleAuthenticate() {
         try {
-            const response = await fetch('http://localhost:8888/authenticate/google', {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/authenticate/google`, {
                 method: 'GET',
             });
             

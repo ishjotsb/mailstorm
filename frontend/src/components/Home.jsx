@@ -62,7 +62,7 @@ export default function Home() {
         }
 
         try {
-            const response = await fetch('http://localhost:8888/email/send-email', {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/email/send-email`, {
                 method: 'POST',
                 body: JSON.stringify(reqObj),
                 headers: {
