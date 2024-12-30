@@ -7,7 +7,7 @@ require('dotenv').config();
 exports.googleAuth = async (req, res) => {
     const CLIENT_ID = process.env.CLIENT_ID;
     const CLIENT_SECRET = process.env.CLIENT_SECRET;
-    const REDIRECT_URI = 'http://localhost:8888/authenticate/redirect';
+    const REDIRECT_URI = `${process.env.API_URL}/authenticate/redirect`;
     const oAuth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
     try {
@@ -40,7 +40,7 @@ exports.googleRedirect = async (req, res) => {
     // Create OAuth2 client instance in this route
     const CLIENT_ID = process.env.CLIENT_ID;
     const CLIENT_SECRET = process.env.CLIENT_SECRET;
-    const REDIRECT_URI = 'http://localhost:8888/authenticate/redirect';
+    const REDIRECT_URI = `${process.env.API_URL}/authenticate/redirect`;
     const oAuth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
     try {
@@ -52,7 +52,7 @@ exports.googleRedirect = async (req, res) => {
         const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
         const userInfo = await oauth2.userinfo.get();
 
-        const redirectUrl = `http://localhost:5173/home?access_token=${tokens.access_token}&refresh_token=${tokens.refresh_token}&user_info=${encodeURIComponent(JSON.stringify(userInfo.data))}`;
+        const redirectUrl = `${process.env.BASE_URL}/home?access_token=${tokens.access_token}&refresh_token=${tokens.refresh_token}&user_info=${encodeURIComponent(JSON.stringify(userInfo.data))}`;
 
         res.redirect(redirectUrl);
 

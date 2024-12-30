@@ -21,7 +21,7 @@ exports.sendMail = async (req, res) => {
         const oAuth2Client = new google.auth.OAuth2(
             process.env.CLIENT_ID,
             process.env.CLIENT_SECRET,
-            'http://localhost:8888/authenticate/redirect'
+            `${process.env.API_URL}/authenticate/redirect`
         );
 
         oAuth2Client.setCredentials({
