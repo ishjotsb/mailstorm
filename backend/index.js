@@ -20,6 +20,9 @@ const sendEmailRouter = require('./routes/sendEmailRouter');
 
 app.use('/authenticate', authenticationRouter);
 app.use('/email', sendEmailRouter);
+app.use('/', (req, res) => {
+    res.send("<h1>Welcome to MailStorm</h1>")
+})
 
 app.listen(port, (req, res) => {
     console.log(`The server is running on port ${port}`);
