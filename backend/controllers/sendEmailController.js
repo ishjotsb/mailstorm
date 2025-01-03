@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 exports.sendMail = async (req, res) => {
 
-    // console.log(req.user)
+    console.log(req)
     const { emailList, subject, body } = req.body;
 
     // console.log(emailList);
