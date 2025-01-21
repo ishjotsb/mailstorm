@@ -5,11 +5,11 @@ exports.sendMail = async (req, res) => {
 
     // console.log(req)
     const { emailList, subject, body } = req.body;
-    console.log(req.body);
-    const attachment = req.file;
-    console.log(attachment)
+    // console.log(req.body);
+    // const attachment = req.file;
+    // console.log(attachment)
 
-    console.log(emailList, subject, body, attachment);
+    console.log(emailList, subject, body);
 
     if (!emailList || !Array.isArray(emailList) || !subject || !body) {
         return res.status(400).json({ error: 'Invalid request. Ensure emailList, subject, and body are provided.' });

@@ -4,6 +4,7 @@ const { oauth2 } = require('googleapis/build/src/apis/oauth2');
 module.exports = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
+    console.log(req.body);
     
     const token = authHeader.split(' ')[1].trim();
     console.log(token);

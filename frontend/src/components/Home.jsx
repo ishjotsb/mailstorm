@@ -12,7 +12,7 @@ export default function Home() {
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
-    const [attachment, setAttachment] = useState(null);
+    // const [attachment, setAttachment] = useState(null);
 
     const { setAccessToken } = useContext(UserContext);
     const [searchParams] = useSearchParams();
@@ -49,9 +49,9 @@ export default function Home() {
         setEmail("");
     }
 
-    function handleAttachment(e) {
-        setAttachment(e.target.files[0]);
-    }
+    // function handleAttachment(e) {
+    //     setAttachment(e.target.files[0]);
+    // }
 
     async function handleClickSend() {
         if (emailList.length === 0 || subject === "" || body === "") {
@@ -59,19 +59,27 @@ export default function Home() {
             return;
         }
 
-        const formData = new FormData();
-        formData.append("emailList", JSON.stringify(emailList));
-        formData.append("subject", subject);
-        formData.append("body", body);
-        if (attachment) {
-            formData.append("attachment", attachment);
+        // const formData = new FormData();
+        // formData.append("emailList", JSON.stringify(emailList));
+        // formData.append("subject", subject);
+        // formData.append("body", body);
+        const reqObj = {
+            emailList: emailList,
+            subject,
+            body
         }
+
+        console.log(reqObj);
+        // if (attachment) {
+        //     formData.append("attachment", attachment);
+        // }
 
         try {
             const response = await fetch(`${import.meta.env.VITE_BASE_URL}/email/send-email`, {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(reqObj),
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             });
@@ -83,7 +91,7 @@ export default function Home() {
             setSubject("");
             setBody("");
             setEmailList([]);
-            setAttachment(null);
+            // setAttachment(null);
             alert("Email sent successfully!");
             console.log(data);
         } catch (err) {
@@ -126,10 +134,10 @@ export default function Home() {
                     <label>Body:</label>
                     <ReactQuill theme="snow" value={body} onChange={handleBody} className="custom-editor" />
                 </div>
-                <div className="input-container">
+                {/* <div className="input-container">
                     <label>Attachment:</label>
                     <input type="file" onChange={handleAttachment} />
-                </div>
+                </div> */}
                 <div className="input-container">
                     <button onClick={handleClickSend} className="button-send">Send Email</button>
                 </div>
